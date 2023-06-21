@@ -94,5 +94,19 @@ return {
 
 		-- Map <ESC> to do what <CTRL-\> <CTRL-N> does to exit terminal mode
 		vim.api.nvim_set_keymap("t", "<ESC>", "<C-\\><C-n>", { noremap = true })
+
+		-- Map go to definition to gd
+		vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true })
+
+		-- Change local dir to ~/bar on startup
+		vim.cmd("cd ~/bar")
+
+		-- Fix error "warning: multiple different client offset_encodings detected for buffer, this is not supported yet
+		-- https://www.reddit.com/r/neovim/comments/wmj8kb/i_have_nullls_and_clangd_attached_to_a_buffer_c/
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities.offsetEncoding = 'utf-8'
+		require('lspconfig').clangd.setup {
+			capabilities = capabilities
+		}
 	end,
 }
