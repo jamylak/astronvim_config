@@ -96,7 +96,23 @@ return {
 		vim.api.nvim_set_keymap("t", "<ESC>", "<C-\\><C-n>", { noremap = true })
 
 		-- Map go to definition to gd
+		-- For some reason the automatic ones don't always come up
+		-- https://github.com/neovim/nvim-lspconfig
 		vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true })
+		vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true })
+		vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap = true })
+		vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { noremap = true })
+		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { noremap = true })
+		vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, { noremap = true })
+		vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, { noremap = true })
+		vim.keymap.set('n', '<space>wl', function()
+			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+		end, { noremap = true })
+		vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, { noremap = true })
+		vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { noremap = true })
+		vim.keymap.set('n', '<space>lr', vim.lsp.buf.rename, { noremap = true })
+		vim.keymap.set('n', 'gr', vim.lsp.buf.references, { noremap = true })
+
 
 		-- Change local dir to ~/bar on startup
 		vim.cmd("cd ~/bar")
