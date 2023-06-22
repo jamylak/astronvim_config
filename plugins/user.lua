@@ -9,7 +9,7 @@ return {
 	--     require("lsp_signature").setup()
 	--   end,
 	-- },
-	-- cppman
+	{ 'mrjones2014/smart-splits.nvim', lazy = false },
 	{
 		'nvim-treesitter/playground',
 		requires = {

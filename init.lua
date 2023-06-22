@@ -124,5 +124,22 @@ return {
 		require('lspconfig').clangd.setup {
 			capabilities = capabilities
 		}
+
+		-- Keymappings for smart splits
+		-- https://github.com/mrjones2014/smart-splits.nvim
+		vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left, { noremap = true })
+		vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down, { noremap = true })
+		vim.keymap.set('n', '<A-k>', require('smart-splits').resize_up, { noremap = true })
+		vim.keymap.set('n', '<A-l>', require('smart-splits').resize_right, { noremap = true })
+		-- moving between split
+		vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left, { noremap = true })
+		vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down, { noremap = true })
+		vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up, { noremap = true })
+		vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right, { noremap = true })
+		-- swapping buffers between window
+		vim.keymap.set('n', '<leader><leader>h', require('smart-splits').swap_buf_left, { noremap = true })
+		vim.keymap.set('n', '<leader><leader>j', require('smart-splits').swap_buf_down, { noremap = true })
+		vim.keymap.set('n', '<leader><leader>k', require('smart-splits').swap_buf_up, { noremap = true })
+		vim.keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right, { noremap = true })
 	end,
 }
