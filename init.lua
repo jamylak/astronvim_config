@@ -111,6 +111,7 @@ return {
 		vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, { noremap = true })
 		vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { noremap = true })
 		vim.keymap.set('n', '<space>lr', vim.lsp.buf.rename, { noremap = true })
+		vim.keymap.set('n', '<space>la', vim.lsp.buf.code_action, { noremap = true })
 		vim.keymap.set('n', 'gr', vim.lsp.buf.references, { noremap = true })
 
 
