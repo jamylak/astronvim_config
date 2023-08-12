@@ -103,9 +103,11 @@ return {
 		vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap = true })
 		vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { noremap = true })
 		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { noremap = true })
-		vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, { noremap = true })
-		vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, { noremap = true })
-		vim.keymap.set('n', '<space>wl', function()
+
+		vim.keymap.set('n', '<space>lwa', vim.lsp.buf.add_workspace_folder, { noremap = true })
+		vim.keymap.set('n', '<space>lwr', vim.lsp.buf.remove_workspace_folder, { noremap = true })
+		vim.keymap.set('n', '<space>lwl', function()
+
 			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 		end, { noremap = true })
 		vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, { noremap = true })
@@ -142,5 +144,23 @@ return {
 		vim.keymap.set('n', '<leader><leader>j', require('smart-splits').swap_buf_down, { noremap = true })
 		vim.keymap.set('n', '<leader><leader>k', require('smart-splits').swap_buf_up, { noremap = true })
 		vim.keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right, { noremap = true })
-	end,
+
+		vim.cmd([[ au BufRead,BufNewFile *.frag setfiletype glsl ]])
+
+		require'lspconfig'.glslls.setup{
+  		on_attach = function(client, bufnr)
+    		-- print('glslls attached to buffer ' .. bufnr)
+  		end,
+  		on_init = function(client)
+    		-- print('glslls initialized')
+  		end,
+		}
+
+		end,
+
+		vim.api.nvim_command('autocmd TermOpen * startinsert');
+		vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n><C-w>', { noremap = true });
+		vim.api.nvim_command('autocmd TermClose * stopinsert');
+		vim.api.nvim_command('autocmd BufEnter term://* startinsert');
+
 }

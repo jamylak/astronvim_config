@@ -11,6 +11,13 @@ return {
 	-- },
 	{ 'mrjones2014/smart-splits.nvim', lazy = false },
 	{
+  	'tikhomirov/vim-glsl',
+  	ft = {'glsl', 'vert', 'frag', 'geom'},
+  	config = function()
+    	-- configuration goes here
+  	end
+	},
+	{
 		'nvim-treesitter/playground',
 		requires = {
 			'nvim-treesitter/nvim-treesitter'
