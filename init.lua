@@ -150,7 +150,9 @@ return {
     vim.keymap.set("n", "<leader>tt", ":Telescope<Return>", { noremap = true })
 
     vim.cmd [[ au BufRead,BufNewFile *.frag setfiletype glsl ]]
-
+    require("smart-splits").setup {
+      default_amount = 10,
+    }
     require("lspconfig").glslls.setup {
       on_attach = function(client, bufnr)
         -- print('glslls attached to buffer ' .. bufnr)
