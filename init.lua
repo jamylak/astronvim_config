@@ -147,6 +147,7 @@ return {
     vim.keymap.set("n", "<leader><leader>j", require("smart-splits").swap_buf_down, { noremap = true })
     vim.keymap.set("n", "<leader><leader>k", require("smart-splits").swap_buf_up, { noremap = true })
     vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right, { noremap = true })
+    vim.keymap.set("n", "<leader>tt", ":Telescope<Return>", { noremap = true })
 
     vim.cmd [[ au BufRead,BufNewFile *.frag setfiletype glsl ]]
 
