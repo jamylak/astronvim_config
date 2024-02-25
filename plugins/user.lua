@@ -85,6 +85,12 @@ return {
     end,
   },
   {
+    "fedepujol/move.nvim",
+    opts = {
+      --- Config
+    },
+  },
+  {
 
     "madskjeldgaard/cppman.nvim",
     requires = {
