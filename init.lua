@@ -181,6 +181,10 @@ return {
     vim.keymap.set("v", "<A-h>", ":MoveHBlock(-1)<CR>", opts)
     vim.keymap.set("v", "<A-l>", ":MoveHBlock(1)<CR>", opts)
 
+    -- Add space above or below
+    vim.api.nvim_set_keymap("n", "[<Space>", ':execute "normal! O"<CR>j', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap("n", "]<Space>", ':execute "normal! o"<CR>k', { noremap = true, silent = true })
+
     vim.cmd [[ au BufRead,BufNewFile *.frag setfiletype glsl ]]
     require("smart-splits").setup {
       default_amount = 10,
