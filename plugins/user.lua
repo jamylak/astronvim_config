@@ -10,6 +10,7 @@ return {
   --   end,
   -- },
   { "mrjones2014/smart-splits.nvim", lazy = false },
+  { "mg979/vim-visual-multi", branch = "master", lazy = false },
   {
     "nvim-neo-tree/neo-tree.nvim",
     config = function()
