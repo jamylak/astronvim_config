@@ -133,10 +133,10 @@ return {
 
     -- Keymappings for smart splits
     -- https://github.com/mrjones2014/smart-splits.nvim
-    vim.keymap.set("n", "<A-h>", require("smart-splits").resize_left, { noremap = true })
-    vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down, { noremap = true })
-    vim.keymap.set("n", "<A-k>", require("smart-splits").resize_up, { noremap = true })
-    vim.keymap.set("n", "<A-l>", require("smart-splits").resize_right, { noremap = true })
+    vim.keymap.set("n", "<C-S-h>", require("smart-splits").resize_left, { noremap = true })
+    vim.keymap.set("n", "<C-S-j>", require("smart-splits").resize_down, { noremap = true })
+    vim.keymap.set("n", "<C-S-k>", require("smart-splits").resize_up, { noremap = true })
+    vim.keymap.set("n", "<C-S-l>", require("smart-splits").resize_right, { noremap = true })
     -- moving between split
     vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left, { noremap = true })
     vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down, { noremap = true })
@@ -147,6 +147,8 @@ return {
     vim.keymap.set("n", "<leader><leader>j", require("smart-splits").swap_buf_down, { noremap = true })
     vim.keymap.set("n", "<leader><leader>k", require("smart-splits").swap_buf_up, { noremap = true })
     vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right, { noremap = true })
+
+    -- ALl telescope
     vim.keymap.set("n", "<leader>tt", ":Telescope<Return>", { noremap = true })
 
     -- move.nvim
@@ -167,19 +169,29 @@ return {
       },
     }
     local opts = { noremap = true, silent = true }
+
+    -- Move lines
     -- Normal-mode commands
-    vim.keymap.set("n", "<A-j>", ":MoveLine(1)<CR>", opts)
-    vim.keymap.set("n", "<A-k>", ":MoveLine(-1)<CR>", opts)
-    vim.keymap.set("n", "<A-h>", ":MoveWord(-1)<CR>", opts)
-    vim.keymap.set("n", "<A-l>", ":MoveWord(1)<CR>", opts)
-    -- vim.keymap.set("n", "<leader>wf", ":MoveWord(1)<CR>", opts)
-    -- vim.keymap.set("n", "<leader>wb", ":MoveWord(-1)<CR>", opts)
+    vim.keymap.set("n", "<M-Down>", ":MoveLine(1)<CR>", opts)
+    vim.keymap.set("n", "<M-Up>", ":MoveLine(-1)<CR>", opts)
+    -- Left and right need M-b and M-f for some reason
+    vim.keymap.set("n", "<M-b>", ":MoveWord(-1)<CR>", opts)
+    vim.keymap.set("n", "<M-f>", ":MoveWord(1)<CR>", opts)
+    vim.keymap.set("n", "<leader>wf", ":MoveWord(1)<CR>", opts)
+    vim.keymap.set("n", "<leader>wb", ":MoveWord(-1)<CR>", opts)
 
     -- Visual-mode commands
-    vim.keymap.set("v", "<A-j>", ":MoveBlock(1)<CR>", opts)
-    vim.keymap.set("v", "<A-k>", ":MoveBlock(-1)<CR>", opts)
-    vim.keymap.set("v", "<A-h>", ":MoveHBlock(-1)<CR>", opts)
-    vim.keymap.set("v", "<A-l>", ":MoveHBlock(1)<CR>", opts)
+    vim.keymap.set("v", "<M-Down>", ":MoveBlock(1)<CR>", opts)
+    vim.keymap.set("v", "<M-Up>", ":MoveBlock(-1)<CR>", opts)
+    -- Left and right need M-b and M-f for some reason
+    vim.keymap.set("v", "<M-b>", ":MoveHBlock(-1)<CR>", opts)
+    vim.keymap.set("v", "<M-f>", ":MoveHBlock(1)<CR>", opts)
+
+    -- Vim visual multi
+    vim.keymap.set("n", "<A-j>", "<Plug>(VM-Select-Cursor-Down)")
+    vim.keymap.set("n", "<A-k>", "<Plug>(VM-Select-Cursor-Up)")
+    -- vim.keymap.set("n", "<A-h>", "<Plug>(VM-Select-Cursor-Left)")
+    -- vim.keymap.set("n", "<A-l>", "<Plug>(VM-Select-Cursor-Right)")
 
     -- Add space above or below
     vim.api.nvim_set_keymap("n", "[<Space>", ':execute "normal! O"<CR>j', { noremap = true, silent = true })
